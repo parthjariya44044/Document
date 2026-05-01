@@ -2,24 +2,24 @@
 
 ## ACKNOWLEDGEMENT
 
-The successful completion of this E-Commerce platform would not have been possible without the support, guidance, and assistance of various individuals and resources. We would like to express our profound gratitude to our mentors, the open-source community, and the developers of the frameworks and libraries utilized in this project, notably the Flutter and Node.js ecosystems. Their comprehensive documentation and active community support played a crucial role in overcoming technical challenges. We also extend our thanks to our peers for their constructive feedback and continuous encouragement throughout the software development lifecycle.
+The successful completion of this Finikart platform would not have been possible without the support, guidance, and assistance of various individuals and resources. We would like to express our profound gratitude to our mentors, the open-source community, and the developers of the frameworks and libraries utilized in this project, notably the Flutter and Node.js ecosystems. Their comprehensive documentation and active community support played a crucial role in overcoming technical challenges. We also extend our thanks to our peers for their constructive feedback and continuous encouragement throughout the software development lifecycle.
 
 ## ABSTRACT
 
-The rapid digital transformation of the retail industry demands robust, scalable, and user-centric E-Commerce solutions. This document presents a comprehensive analysis of a modern E-Commerce platform built utilizing a microservices architecture. The system leverages Dart (Flutter) to deliver a seamless, cross-platform mobile application interface and Node.js for a highly scalable, distributed backend infrastructure. By dividing the backend into independent services—Identity, Catalog, and Order management—connected via an API Gateway, the system guarantees high availability and fault tolerance. Key features include real-time synchronization, secure Razorpay payment gateway integration, advanced state management using Riverpod, and a dedicated admin interface for business analytics. This report outlines the project lifecycle from requirement gathering and system design to comprehensive testing and future scope planning.
+The rapid digital transformation of the retail industry demands robust, scalable, and user-centric Finikart solutions. This document presents a comprehensive analysis of a modern Finikart platform built utilizing a microservices architecture. The system leverages Dart (Flutter) to deliver a seamless, cross-platform mobile application interface and Node.js for a highly scalable, distributed backend infrastructure. By dividing the backend into independent services—Identity, Catalog, and Order management—connected via an API Gateway, the system guarantees high availability and fault tolerance. Key features include real-time synchronization, secure Razorpay payment gateway integration, advanced state management using Riverpod, and a dedicated admin interface for business analytics. This report outlines the project lifecycle from requirement gathering and system design to comprehensive testing and future scope planning.
 
 ## INTRODUCTION
 
 ### Project Summary
-This project is an end-to-end, cross-platform E-Commerce solution designed to facilitate seamless online buying and selling. It includes a comprehensive consumer-facing mobile application and an integrated admin management suite. Core functionalities of the consumer application encompass secure user authentication, intelligent product catalog browsing, cart and checkout management, wishlists, and order tracking. The administrative features provide control over product listings, category management, promotions, and real-time business analytics.
+This project is an end-to-end, cross-platform Finikart solution designed to facilitate seamless online buying and selling. It includes a comprehensive consumer-facing mobile application and an integrated admin management suite. Core functionalities of the consumer application encompass secure user authentication, intelligent product catalog browsing, cart and checkout management, wishlists, and order tracking. The administrative features provide control over product listings, category management, promotions, and real-time business analytics.
 
 ### Purpose
-The primary purpose of this E-Commerce platform is to bridge the gap between retailers and consumers by providing an accessible, fast, and secure digital marketplace. It aims to eliminate traditional bottlenecks in online shopping by implementing a distributed backend architecture that dynamically scales during high-traffic events (e.g., flash sales). For administrative users, the purpose is to provide actionable insights and streamlined inventory control to ensure efficient business operations.
+The primary purpose of this Finikart platform is to bridge the gap between retailers and consumers by providing an accessible, fast, and secure digital marketplace. It aims to eliminate traditional bottlenecks in online shopping by implementing a distributed backend architecture that dynamically scales during high-traffic events (e.g., flash sales). For administrative users, the purpose is to provide actionable insights and streamlined inventory control to ensure efficient business operations.
 
 ### Language (Node, Dart)
 The solution is primarily built utilizing two core technologies: 
 *   **Dart (Flutter):** The consumer and admin applications are designed using Flutter, dart's UI toolkit. This ensures a consistent, native-like performance and 60-120fps animations across both iOS and Android platforms from a single codebase. It utilizes Riverpod for reactive state management, enabling clean and maintainable business logic separation.
-*   **Node.js (JavaScript/TypeScript ecosystem):** The backend infrastructure relies on Node.js running an Express-based microservices architecture. Node's non-blocking, event-driven architecture is ideally suited for handling concurrent E-Commerce transactions, real-time WebSocket notifications, and rapid microservice interconnectivity. 
+*   **Node.js (JavaScript/TypeScript ecosystem):** The backend infrastructure relies on Node.js running an Express-based microservices architecture. Node's non-blocking, event-driven architecture is ideally suited for handling concurrent Finikart transactions, real-time WebSocket notifications, and rapid microservice interconnectivity. 
 
 ## PROJECT MANAGEMENT
 
@@ -64,7 +64,7 @@ The schedule was maintained using standard project tracking tools mimicking a Ga
 ## SYSTEM ANALYSIS
 
 **Existing System:**
-Traditional monolithic E-Commerce platforms often suffer from tight coupling. If the order processing module fails during a traffic surge, the entire application, including the product catalog, can go down, causing substantial revenue loss. Additionally, maintaining multi-platform codebases (separate Swift and Kotlin repositories) requires significant overhead.
+Traditional monolithic Finikart platforms often suffer from tight coupling. If the order processing module fails during a traffic surge, the entire application, including the product catalog, can go down, causing substantial revenue loss. Additionally, maintaining multi-platform codebases (separate Swift and Kotlin repositories) requires significant overhead.
 
 **Proposed System:**
 The proposed system directly addresses these flaws. By separating the backend into microservices (`identity`, `catalog`, `order`), a failure in one service does not cripple the entire application. The use of Flutter allows a single engineering team to maintain iOS and Android iterations simultaneously. Redis caching minimizes database hits for frequently accessed product catalogs, radically improving load times. 
@@ -87,7 +87,7 @@ The system follows a highly modular, decoupled architecture prioritizing speed a
 
 ```mermaid
 graph TD
-    A[Flutter E-Commerce App] -->|HTTP / REST API| B(API Gateway)
+    A[Flutter Finikart App] -->|HTTP / REST API| B(API Gateway)
     B -->|User Auth/Roles| C[Identity Service]
     B -->|Product Search/Details| D[Catalog Service]
     B -->|Cart/Checkout/Payments| E[Order Service]
@@ -137,7 +137,7 @@ A Test-Driven Development (TDD) approach was integrated into the backend environ
 
 ## CONCLUSION AND DISCUSSION
 
-The development of this E-Commerce platform successfully demonstrates the efficacy of combining a Node.js microservices backend with a Flutter-based mobile frontend architecture. The system successfully solves the problems of scalability and multi-platform maintenance natively found in legacy applications. The decoupled nature of the Identity, Catalog, and Order services ensures the platform remains highly available, while the integration of modern UI libraries (Riverpod, Skeletonizer, Fl_Chart) empowers the administrative and consumer interfaces with fluid, responsive user experiences. Ultimately, the project lays a highly resilient foundation capable of scaling into a large-scale enterprise enterprise application.
+The development of this Finikart platform successfully demonstrates the efficacy of combining a Node.js microservices backend with a Flutter-based mobile frontend architecture. The system successfully solves the problems of scalability and multi-platform maintenance natively found in legacy applications. The decoupled nature of the Identity, Catalog, and Order services ensures the platform remains highly available, while the integration of modern UI libraries (Riverpod, Skeletonizer, Fl_Chart) empowers the administrative and consumer interfaces with fluid, responsive user experiences. Ultimately, the project lays a highly resilient foundation capable of scaling into a large-scale enterprise enterprise application.
 
 ## REFERENCES
 
