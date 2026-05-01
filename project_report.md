@@ -1,7 +1,7 @@
-# E-Commerce Platform: Comprehensive Project Report
+# Finikart Platform: Comprehensive Project Report
 
 ## 1. Project Overview
-The E-Commerce Platform is a robust, full-stack application designed to provide a premium shopping experience across mobile and web. It features a scalable Node.js backend and a high-performance Flutter mobile application, following industry-standard architecture patterns and security best practices.
+The Finikart Platform is a robust, full-stack application designed to provide a premium shopping experience across mobile and web. It features a scalable Node.js backend and a high-performance Flutter mobile application, following industry-standard architecture patterns and security best practices.
 
 ---
 
@@ -32,7 +32,7 @@ backend/
 The mobile application uses **Feature-First Clean Architecture** combined with **Functional Programming** patterns. It utilizes **Riverpod** for declarative state management.
 
 ```text
-ecommerce_app/
+finikart/
 ├── lib/
 │   ├── core/               # Shared logic (Router, Theme, Localization, Error handling)
 │   ├── features/           # Feature-based modules
