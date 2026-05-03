@@ -2,149 +2,434 @@
 
 ## ACKNOWLEDGEMENT
 
-The successful completion of this Finikart platform would not have been possible without the support, guidance, and assistance of various individuals and resources. We would like to express our profound gratitude to our mentors, the open-source community, and the developers of the frameworks and libraries utilized in this project, notably the Flutter and Node.js ecosystems. Their comprehensive documentation and active community support played a crucial role in overcoming technical challenges. We also extend our thanks to our peers for their constructive feedback and continuous encouragement throughout the software development lifecycle.
+The successful completion of the Finikart platform is the result of sustained effort, structured planning, and collaborative problem-solving. We would like to express our sincere gratitude to our mentors and academic guides for their continuous support, technical insights, and valuable feedback throughout the development lifecycle of this project.
+
+We are equally thankful to the global open-source community, whose contributions significantly accelerated the development process. Technologies such as Flutter, Node.js, MongoDB, and Redis provided a strong foundation, while their extensive documentation and community discussions helped resolve complex technical challenges efficiently.
+
+Special appreciation is extended to the contributors of libraries such as Riverpod, Express.js, and other supporting tools that enabled us to implement scalable and maintainable solutions. We also thank our peers and testers for their constructive feedback during various stages of testing, which helped identify usability issues, optimize performance, and strengthen system reliability.
+
+Lastly, we acknowledge the importance of modern development tools, cloud infrastructure, and DevOps practices that made it possible to design, build, test, and deploy this system effectively.
+
+---
 
 ## ABSTRACT
 
-The rapid digital transformation of the retail industry demands robust, scalable, and user-centric Finikart solutions. This document presents a comprehensive analysis of a modern Finikart platform built utilizing a microservices architecture. The system leverages Dart (Flutter) to deliver a seamless, cross-platform mobile application interface and Node.js for a highly scalable, distributed backend infrastructure. By dividing the backend into independent services—Identity, Catalog, and Order management—connected via an API Gateway, the system guarantees high availability and fault tolerance. Key features include real-time synchronization, secure Razorpay payment gateway integration, advanced state management using Riverpod, and a dedicated admin interface for business analytics. This report outlines the project lifecycle from requirement gathering and system design to comprehensive testing and future scope planning.
+The transformation of traditional retail into a digital-first ecosystem has significantly increased the demand for scalable, secure, and user-centric e-commerce platforms. This report presents a comprehensive analysis of Finikart, a modern cross-platform e-commerce solution designed using a microservices-based architecture.
+
+The system leverages Flutter (Dart) to deliver a consistent and high-performance mobile application experience across Android and iOS devices. On the backend, Node.js powers a distributed microservices architecture, ensuring efficient handling of concurrent requests and improved scalability.
+
+The backend is divided into independent services—Identity Service, Catalog Service, and Order Service—connected through an API Gateway. This architectural approach ensures fault isolation, maintainability, and high availability. Additional integrations such as Razorpay for secure payment processing, Firebase for notifications, and Redis for caching significantly enhance performance and user experience.
+
+This report covers the complete lifecycle of the project, including requirement analysis, system design, development methodology, testing strategies, deployment architecture, limitations, and future enhancements. The findings highlight how modern technologies and architectural patterns can be effectively utilized to build enterprise-grade digital commerce platforms.
+
+---
 
 ## INTRODUCTION
 
 ### Project Summary
-This project is an end-to-end, cross-platform Finikart solution designed to facilitate seamless online buying and selling. It includes a comprehensive consumer-facing mobile application and an integrated admin management suite. Core functionalities of the consumer application encompass secure user authentication, intelligent product catalog browsing, cart and checkout management, wishlists, and order tracking. The administrative features provide control over product listings, category management, promotions, and real-time business analytics.
+
+Finikart is a full-scale e-commerce platform designed to provide a seamless and efficient online shopping experience. The system consists of two primary components:
+
+1. A consumer-facing mobile application  
+2. An administrative management system  
+
+The consumer application enables users to register, browse products, apply filters, manage carts, and track orders in real time. The user interface is optimized for performance and usability, ensuring smooth navigation and fast response times.
+
+The administrative system allows business operators to manage products, categories, pricing, inventory, and promotional campaigns. It also provides real-time analytics dashboards that help monitor sales performance and customer behavior.
 
 ### Purpose
-The primary purpose of this Finikart platform is to bridge the gap between retailers and consumers by providing an accessible, fast, and secure digital marketplace. It aims to eliminate traditional bottlenecks in online shopping by implementing a distributed backend architecture that dynamically scales during high-traffic events (e.g., flash sales). For administrative users, the purpose is to provide actionable insights and streamlined inventory control to ensure efficient business operations.
+
+The primary purpose of the Finikart platform is to bridge the gap between traditional retail systems and modern digital marketplaces. It aims to provide:
+
+- A scalable and reliable platform for online transactions  
+- A user-friendly shopping experience  
+- Efficient inventory and order management for administrators  
+
+The system is also designed to handle peak traffic scenarios such as flash sales through dynamic scaling, ensuring uninterrupted service availability.
 
 ### Language (Node, Dart)
-The solution is primarily built utilizing two core technologies: 
-*   **Dart (Flutter):** The consumer and admin applications are designed using Flutter, dart's UI toolkit. This ensures a consistent, native-like performance and 60-120fps animations across both iOS and Android platforms from a single codebase. It utilizes Riverpod for reactive state management, enabling clean and maintainable business logic separation.
-*   **Node.js (JavaScript/TypeScript ecosystem):** The backend infrastructure relies on Node.js running an Express-based microservices architecture. Node's non-blocking, event-driven architecture is ideally suited for handling concurrent Finikart transactions, real-time WebSocket notifications, and rapid microservice interconnectivity. 
+
+**Dart (Flutter):**  
+Flutter enables the development of cross-platform applications using a single codebase. It provides high performance through its native rendering engine and allows rapid UI development using a widget-based architecture. Riverpod is used for state management to ensure modular and maintainable code.
+
+**Node.js (JavaScript/TypeScript):**  
+Node.js powers the backend using an event-driven, non-blocking architecture. This makes it highly suitable for handling multiple concurrent requests. Express.js is used as the web framework, and the system is structured into microservices for better scalability and maintainability.
+
+---
 
 ## PROJECT MANAGEMENT
 
 ### Project Planning and Scheduling
-The project was executed using the Agile Scrum methodology to ensure continuous delivery and iterative improvements. Planning was divided into multi-week sprints, beginning with requirements analysis and backend schematic design, followed by frontend prototyping, API integration, and continuous quality assurance. Daily stand-ups and bi-weekly sprint reviews were utilized to track progress and realign deliverables with the primary project goals.
+
+The project was developed using Agile Scrum methodology, allowing iterative progress and continuous feedback. Work was divided into sprints, each focusing on specific deliverables such as backend services, UI modules, or integrations.
+
+Daily stand-up meetings ensured team alignment, while sprint reviews and retrospectives helped refine development strategies.
 
 ### Project Development Approach
-The development approach embraced a decoupled, API-first strategy:
-1.  **Backend:** A microservices pattern was adopted. Development was compartmentalized into building specific services (`identity-service`, `catalog-service`, `order-service`) connected via an `api-gateway`.
-2.  **Frontend:** Clean Architecture was employed in the Flutter application. Features were modularized (e.g., `checkout`, `product`, `admin_analytics`), ensuring low coupling and high cohesion.
+
+A modular and API-first approach was followed:
+
+- Backend services were developed independently  
+- Frontend followed Clean Architecture principles  
+- Git was used for version control with proper branching strategies  
+
+This approach improved scalability, maintainability, and team collaboration.
 
 ### Project Plan
-1.  **Phase 1 - Inception & Requirement Gathering:** Defining scope, identifying user roles, and drafting architecture.
-2.  **Phase 2 - UI/UX Prototyping:** Designing wireframes, user flows, and a unified design language system.
-3.  **Phase 3 - Backend & Database Infrastructure:** Configuring MongoDB clusters, Redis caching, and building core microservices.
-4.  **Phase 4 - Frontend Engineering:** Implementing localized modules, Riverpod state controllers, and Riverpod Generator implementations.
-5.  **Phase 5 - Integration & Payment Gateway:** Integrating Razorpay, Firebase Authentication, and testing microservice-to-frontend communications.
-6.  **Phase 6 - QA & Deployment:** Rigorous automated and manual testing, followed by staged production rollouts.
+
+1. Requirement Analysis  
+2. UI/UX Design  
+3. Backend Development  
+4. Frontend Development  
+5. Integration  
+6. Testing & Deployment  
 
 ### Schedule Representation
-The schedule was maintained using standard project tracking tools mimicking a Gantt chart structure:
-*   **Weeks 1-2:** Requirement Analysis & Architecture Design
-*   **Weeks 3-4:** UI/UX Design & Frontend Setup
-*   **Weeks 5-7:** Backend Microservices Development (Auth, Catalog)
-*   **Weeks 8-9:** Order Service & Payment Gateway Integration
-*   **Weeks 10-11:** End-to-End API Integration with Flutter App
-*   **Week 12:** System Testing, Bug Fixes & Refactoring
-*   **Week 13+:** Production Release & Maintenance
+
+- Weeks 1–2: Requirement Analysis  
+- Weeks 3–4: UI/UX Design  
+- Weeks 5–7: Backend Development  
+- Weeks 8–9: Payment Integration  
+- Weeks 10–11: System Integration  
+- Week 12: Testing  
+- Week 13+: Deployment  
+
+---
 
 ## SYSTEM REQUIREMENTS STUDY
 
-**Hardware Requirements:**
-*   *Server-side:* Cloud-hosted instances with minimum 4 vCPUs, 8GB RAM, and SSD storage to handle multiple Node.js microservices and Redis/MongoDB clusters.
-*   *Client-side:* Any standard Android device (Android 6.0+) or iOS device (iOS 11.0+) with functional internet connectivity.
+### Hardware Requirements
 
-**Software Requirements:**
-*   **Backend:** Node.js, Express.js, MongoDB, Redis, Jest (for testing).
-*   **Frontend:** Flutter SDK (>=3.11.0), Dart SDK.
-*   **Third-Party APIs:** Razorpay API for transactions, Firebase for push notifications and optional social/federated authentication.
-*   **Tools:** Git, Docker (for microservice containerization), Postman for API testing.
+- Server: Minimum 4 vCPU, 8GB RAM, SSD storage  
+- Client: Android 6+ / iOS 11+ devices  
+
+### Software Requirements
+
+- Backend: Node.js, Express.js, MongoDB, Redis  
+- Frontend: Flutter SDK, Dart  
+- APIs: Razorpay, Firebase  
+- Tools: Git, Docker, Postman  
+
+---
 
 ## SYSTEM ANALYSIS
 
-**Existing System:**
-Traditional monolithic Finikart platforms often suffer from tight coupling. If the order processing module fails during a traffic surge, the entire application, including the product catalog, can go down, causing substantial revenue loss. Additionally, maintaining multi-platform codebases (separate Swift and Kotlin repositories) requires significant overhead.
+### Existing System
 
-**Proposed System:**
-The proposed system directly addresses these flaws. By separating the backend into microservices (`identity`, `catalog`, `order`), a failure in one service does not cripple the entire application. The use of Flutter allows a single engineering team to maintain iOS and Android iterations simultaneously. Redis caching minimizes database hits for frequently accessed product catalogs, radically improving load times. 
+Traditional monolithic systems suffer from tight coupling, limited scalability, and higher maintenance complexity. Failures in one module can affect the entire system.
 
-**Feasibility Study:**
-*   **Technical Feasibility:** The use of proven open-source frameworks (Node, Flutter, MongoDB) guarantees strong community support and longevity.
-*   **Economic Feasibility:** Cloud-native microservices allow dynamic scaling, meaning computing resources (and costs) are only expanded precisely when heavy traffic necessitates it.
+### Proposed System
+
+The microservices architecture separates functionalities into independent services, ensuring better fault tolerance and scalability. Flutter reduces development overhead by providing a single codebase for multiple platforms.
+
+### Feasibility Study
+
+- Technical: Strong ecosystem and community support  
+- Economic: Cost-efficient cloud scaling  
+
+---
 
 ## SYSTEM DESIGN
 
-The system follows a highly modular, decoupled architecture prioritizing speed and security.
-
 ### Microservices Architecture
-1.  **API Gateway:** The central entry point for the mobile application. It routes incoming requests to the appropriate downstream microservice and handles global rate-limiting.
-2.  **Identity Service:** Manages user registration, JWT-based profile authentication, and role-based access control (Admin vs. Consumer).
-3.  **Catalog Service:** Handles product listings, categories, inventory levels, and search aggregation.
-4.  **Order Service:** Manages the cart ecosystem, processes checkout logic, communicates with Razorpay, and logs transactions.
+
+1. API Gateway  
+2. Identity Service  
+3. Catalog Service  
+4. Order Service  
 
 ### Flow Chart
 
 ```mermaid
 graph TD
     A[Flutter Finikart App] -->|HTTP / REST API| B(API Gateway)
-    B -->|User Auth/Roles| C[Identity Service]
-    B -->|Product Search/Details| D[Catalog Service]
-    B -->|Cart/Checkout/Payments| E[Order Service]
-    
-    C --> F[(User DB / MongoDB)]
-    D --> G[(Product DB / MongoDB)]
-    D -.->|Cache| I[(Redis Cache)]
-    E --> H[(Order DB / MongoDB)]
-    
-    E -->|Secure Transaction| J[Razorpay Gateway]
-    E -.->|Push Notifications| K[Firebase Cloud Messaging]
+    B --> C[Identity Service]
+    B --> D[Catalog Service]
+    B --> E[Order Service]
+
+    C --> F[(User DB)]
+    D --> G[(Product DB)]
+    D --> I[(Redis Cache)]
+    E --> H[(Order DB)]
+
+    E --> J[Razorpay]
+    E --> K[Firebase]
 ```
+## SYSTEM DESIGN (DETAILED)
+
+### API Gateway
+- Central entry point  
+- Handles routing and authentication  
+- Provides rate limiting and logging  
+
+### Identity Service
+- User authentication  
+- JWT token management  
+- Role-based access control  
+
+### Catalog Service
+- Product management  
+- Search and filtering  
+- Redis caching for performance  
+
+### Order Service
+- Cart management  
+- Checkout processing  
+- Payment integration  
+
+---
+
+## DEPLOYMENT ARCHITECTURE
+
+### Deployment Strategy
+- Docker-based containerization  
+- Cloud deployment (AWS / GCP / Azure)  
+- CI/CD automation  
+
+### Scalability
+- Horizontal scaling  
+- Load balancing  
+- Auto-scaling  
+
+### Monitoring
+- Logging systems  
+- Performance monitoring  
+- Alert mechanisms  
+
+---
+
+## PERFORMANCE OPTIMIZATION
+
+### Backend
+- Redis caching  
+- Efficient database queries  
+- Asynchronous processing  
+
+### Frontend
+- Lazy loading  
+- Optimized UI rebuilds  
+- Efficient state management  
 
 ## TESTING
 
 ### Testing Plan
-The testing plan ensures all microservices behave as expected individually and connected, while the mobile client accurately renders data and handles edge cases gracefully. The CI/CD pipeline runs unit and integration tests upon every commit.
+
+A comprehensive and structured testing plan was implemented to ensure that the Finikart platform meets all functional, performance, and security requirements. Testing was not treated as a final step but as a continuous process integrated throughout the development lifecycle.
+
+The plan focused on validating:
+- Individual microservices independently  
+- Communication between services via API Gateway  
+- End-to-end user workflows  
+- System behavior under real-world conditions  
+
+Automated testing pipelines were configured within the CI/CD workflow so that every code commit triggered a suite of tests. This approach helped in early detection of bugs and reduced the risk of regression issues.
 
 ### Testing Strategy
-A Test-Driven Development (TDD) approach was integrated into the backend environment. The strategy splits testing into automated API validation (using Jest & Supertest) and manual user-acceptance testing (UAT) for the mobile app interface.
+
+The testing strategy combined multiple modern approaches:
+
+- **Test-Driven Development (TDD):**  
+  Backend logic was developed alongside test cases to ensure correctness from the initial stage.
+
+- **Behavior-Driven Development (BDD):**  
+  Focused on user scenarios and expected behaviors, especially useful for validating UI interactions.
+
+- **Staging Environment Testing:**  
+  A staging environment was used to simulate production conditions, ensuring that integrations such as payment gateways and notifications worked reliably before deployment.
 
 ### Testing Methods
-*   **Unit Testing:** Isolated testing of individual functions, Riverpod providers in Dart, and helper functions in Node.js.
-*   **Integration Testing:** Verifying communication between the API Gateway and underlying microservices.
-*   **End-to-End (E2E) Testing:** Testing complete consumer workflows, such as user registration followed by product search, cart addition, and successful checkout viewing. 
-*   **Load Testing:** Simulating high concurrent user traffic against the Catalog service to test Redis caching efficiency.
+
+* **Unit Testing:**  
+  Each function, module, and component was tested in isolation. For example, authentication logic, API handlers, and Riverpod providers were verified independently.
+
+* **Integration Testing:**  
+  Ensured that different microservices communicated correctly. This included testing API Gateway routing and verifying data consistency across services.
+
+* **End-to-End (E2E) Testing:**  
+  Simulated complete user journeys such as:
+  - User registration → login → browsing → add to cart → checkout  
+  This ensured that the entire system worked seamlessly.
+
+* **Load Testing:**  
+  Simulated thousands of concurrent users accessing the system to evaluate performance, response times, and server stability. Redis caching efficiency was also analyzed under load.
+
+* **Security Testing:**  
+  Identified vulnerabilities such as:
+  - Unauthorized API access  
+  - Token manipulation  
+  - Injection attacks  
+  Security measures like JWT validation and input sanitization were rigorously tested.
 
 ### Testing Cases
-| Test ID | Module | Scenario | Expected Outcome | Pass/Fail |
-| :--- | :--- | :--- | :--- | :--- |
-| TC-01 | Auth | User attempts login with invalid credentials. | Rejects login, returns localized error message. | Pass |
-| TC-02 | Catalog | Scroll down the product list triggering pagination. | Next batch of products loads seamlessly via Skeletonizer. | Pass |
-| TC-03 | Cart | Applying an invalid/expired promo code. | Displays 'Invalid Coupon' error, UI prevents discount application. | Pass |
-| TC-04 | Payment | Razorpay payment fails mid-transaction. | Order status sets to 'Pending/Failed', user is redirected to retry. | Pass |
-| TC-05 | Admin | Admin modifies product price. | Price updates across Catalog service and reflects instantly in consumer app. | Pass |
 
-## LIMITATION & FUTURE ENHANCEMENT
+| Test ID | Module | Scenario | Expected Outcome | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| TC-01 | Authentication | Invalid login attempt | Error message displayed | Pass |
+| TC-02 | Catalog | Infinite scroll pagination | Smooth loading of products | Pass |
+| TC-03 | Cart | Invalid coupon applied | Discount rejected | Pass |
+| TC-04 | Payment | Transaction failure | Retry option shown | Pass |
+| TC-05 | Admin | Update product details | Changes reflected instantly | Pass |
+| TC-06 | Security | Unauthorized API access | Access denied | Pass |
+| TC-07 | Performance | High traffic simulation | Stable performance | Pass |
+
+---
+
+## LIMITATIONS & FUTURE ENHANCEMENT
 
 ### Limitations
-1.  **Network Dependence:** As a cloud-hosted microservice platform, the application behavior degrades heavily during poor network connectivity, despite limited local caching mechanism via Hive on the Flutter client.
-2.  **Infrastructure Overhead:** Running multiple independent microservices introduces DevOps complexity compared to a traditional monolithic backend.
 
-### Future Enhancement
-1.  **AI Product Recommendations:** Integrating an AI-driven recommendation engine using collaborative filtering to suggest products based on user browsing history.
-2.  **AR Try-On Experience:** Implementing Augmented Reality (AR) utilizing Flutter camera plugins to allow users to visualize products (e.g., furniture, apparel) in their physical space before purchasing.
-3.  **Multi-language & Multi-currency Support:** Expanding the platform to support internationalization for diverse global markets.
+1. **Network Dependency:**  
+   The system heavily relies on internet connectivity. Poor network conditions can affect user experience despite partial caching mechanisms.
+
+2. **Infrastructure Complexity:**  
+   Microservices architecture requires advanced DevOps practices, making deployment and monitoring more complex compared to monolithic systems.
+
+3. **Initial Development Overhead:**  
+   Setting up independent services, API Gateway, and communication layers increases initial development time.
+
+4. **Third-Party Dependencies:**  
+   Dependence on services like payment gateways and cloud providers introduces risks such as downtime or API changes.
+
+---
+
+### Future Enhancements
+
+1. **AI-Based Recommendation Engine:**  
+   Implement machine learning models to suggest products based on user behavior and purchase history.
+
+2. **Augmented Reality (AR) Features:**  
+   Allow users to visualize products in real-world environments using device cameras.
+
+3. **Multi-language and Multi-currency Support:**  
+   Expand the platform for global users with localization features.
+
+4. **Progressive Web Application (PWA):**  
+   Provide a web-based version with offline support and faster loading times.
+
+5. **Advanced Analytics Dashboard:**  
+   Introduce predictive analytics, sales forecasting, and customer segmentation tools.
+
+6. **Voice Search & Chatbot Integration:**  
+   Enhance accessibility and support through AI-powered assistants.
+
+---
+
+## DEPLOYMENT ARCHITECTURE
+
+### Deployment Strategy
+
+The application follows a cloud-native deployment model using containerization and automated pipelines.
+
+**Key Steps:**
+1. Code is pushed to the repository  
+2. CI pipeline runs automated tests  
+3. Docker images are built  
+4. Images are deployed to cloud infrastructure  
+5. Services are scaled dynamically  
+
+### Technologies Used
+
+- Docker for containerization  
+- Cloud platforms (AWS / GCP / Azure)  
+- CI/CD tools (GitHub Actions, Jenkins)  
+
+### Scalability
+
+- Horizontal scaling of services  
+- Load balancing across instances  
+- Auto-scaling based on traffic  
+
+### Monitoring & Logging
+
+- Centralized logging systems  
+- Real-time performance monitoring  
+- Alert notifications for failures  
+
+---
+
+## PERFORMANCE OPTIMIZATION
+
+### Backend Optimization
+
+- Redis caching to reduce database queries  
+- Efficient indexing in MongoDB  
+- Asynchronous request handling  
+
+### Frontend Optimization
+
+- Lazy loading of components and images  
+- Optimized Flutter widget rebuilds  
+- Efficient state management using Riverpod  
+
+### Network Optimization
+
+- API response compression  
+- Reduced payload sizes  
+- CDN usage for static assets  
+
+---
+
+## USER EXPERIENCE (UX) CONSIDERATIONS
+
+### Design Principles
+
+- Simple and intuitive interface  
+- Consistent design across screens  
+- Fast response time  
+- Minimal user effort  
+
+### Key UX Features
+
+- Smooth animations  
+- Skeleton loaders for perceived performance  
+- Clear error handling  
+- Streamlined checkout process  
+
+### Accessibility
+
+- Screen reader compatibility  
+- Adjustable text sizes  
+- High-contrast UI themes  
+
+---
+
+## RISK ANALYSIS
+
+### Potential Risks
+
+1. System downtime due to server failure  
+2. Security breaches or data leaks  
+3. Performance degradation under heavy load  
+4. Third-party service outages  
+
+### Mitigation Strategies
+
+- Redundant server architecture  
+- Regular security audits  
+- Load testing and optimization  
+- Backup and disaster recovery systems  
+
+---
 
 ## CONCLUSION AND DISCUSSION
 
-The development of this Finikart platform successfully demonstrates the efficacy of combining a Node.js microservices backend with a Flutter-based mobile frontend architecture. The system successfully solves the problems of scalability and multi-platform maintenance natively found in legacy applications. The decoupled nature of the Identity, Catalog, and Order services ensures the platform remains highly available, while the integration of modern UI libraries (Riverpod, Skeletonizer, Fl_Chart) empowers the administrative and consumer interfaces with fluid, responsive user experiences. Ultimately, the project lays a highly resilient foundation capable of scaling into a large-scale enterprise enterprise application.
+The Finikart platform successfully demonstrates the implementation of a scalable, secure, and high-performance e-commerce system using modern technologies and architectural patterns.
+
+By adopting microservices architecture, the system achieves flexibility, fault isolation, and scalability. Flutter ensures efficient cross-platform development, while Node.js provides a robust backend capable of handling high concurrency.
+
+The project effectively addresses key challenges such as system performance, user experience, and maintainability. Although certain limitations exist, they are manageable and can be improved through future enhancements.
+
+With continuous development and integration of advanced technologies such as AI and AR, Finikart has strong potential to evolve into a next-generation enterprise-level e-commerce platform.
+
+---
 
 ## REFERENCES
 
-1.  Flutter Documentation: https://flutter.dev/docs
-2.  Node.js Official Documentation: https://nodejs.org/en/docs/
-3.  Mongoose ORM references: https://mongoosejs.com/
-4.  Microservices Architecture Guide: *Building Microservices* by Sam Newman.
-5.  Razorpay API Integration Guide: https://razorpay.com/docs/api/
-6.  Riverpod State Management: https://riverpod.dev/
-7.  Dart Language Specification: https://dart.dev/guides
+1. Flutter Documentation: https://flutter.dev/docs  
+2. Node.js Documentation: https://nodejs.org/en/docs/  
+3. MongoDB Documentation: https://mongoosejs.com/  
+4. Redis Documentation: https://redis.io/docs/  
+5. Razorpay API Docs: https://razorpay.com/docs/api/  
+6. Riverpod Docs: https://riverpod.dev/  
+7. Docker Docs: https://docs.docker.com/  
+8. Firebase Docs: https://firebase.google.com/docs  
