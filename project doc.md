@@ -98,6 +98,54 @@ This approach improved scalability, maintainability, and team collaboration.
 
 ## SYSTEM REQUIREMENTS STUDY
 
+## USER CHARACTERISTICS
+
+The users of the Online Store Product Purchase System can be broadly categorized into two primary groups: **Customer Users** and **Admin Users**. Each group has distinct roles, expectations, and interaction patterns with the system.
+
+---
+
+### 1. Customer Users
+
+Customer users are the end-users of the platform who interact with the system to browse products, make purchases, and manage their orders.
+
+#### Characteristics
+
+- Possess **basic knowledge of web browsers** and can navigate websites or mobile applications with ease.  
+- Capable of performing common actions such as **registration, login, product search, adding items to cart, and completing purchases**.  
+- Interested in finding **quality products at reasonable prices**, along with clear product descriptions and availability.  
+- Expect a **clean, intuitive, and user-friendly interface** that minimizes effort and reduces confusion.  
+- Prefer **fast-loading pages**, seamless navigation, and a smooth checkout process.  
+- Value **secure payment options**, including multiple payment methods such as UPI, cards, and digital wallets.  
+- Appreciate features like **order tracking, wishlist management, and personalized recommendations**.  
+- Expect **reliable customer support** and transparent policies (returns, refunds, delivery timelines).
+
+---
+
+### 2. Admin Users
+
+Admin users are authorized personnel responsible for managing the platform’s operations through an administrative dashboard.
+
+#### Characteristics
+
+- Possess **basic to intermediate technical skills**, particularly in using web-based management systems and dashboards.  
+- Capable of performing administrative tasks such as:
+  - Adding, updating, and deleting products  
+  - Managing inventory and stock levels  
+  - Monitoring customer orders and transactions  
+  - Handling user accounts and resolving issues  
+
+- Responsible for overseeing **daily system operations**, including order processing, product availability, and overall platform performance.  
+- Expect a **secure, structured, and efficient admin interface** with role-based access control.  
+- Prefer tools that **automate repetitive tasks**, reduce manual workload, and improve operational efficiency.  
+- Require **real-time analytics and reporting features** to make informed business decisions.  
+- Value **data accuracy, system reliability, and quick access to critical information**.
+
+---
+
+### Summary
+
+Understanding user characteristics is essential for designing a system that meets both customer expectations and administrative requirements. While customers prioritize simplicity, speed, and convenience, admin users focus on control, efficiency, and data management. A well-balanced system ensures a seamless experience for both user groups.
+
 ### Hardware Requirements
 
 - Server: Minimum 4 vCPU, 8GB RAM, SSD storage  
