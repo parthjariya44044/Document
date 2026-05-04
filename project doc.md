@@ -637,70 +637,136 @@ The Entity-Relationship (ER) Diagram represents the logical structure of the Onl
 
 ---
 
-### ER Diagram (Visual Representation)
+## ER Diagram (Explanation Based on Provided Image)
 
-```mermaid
-erDiagram
-    USER ||--|| CART : has
-    USER ||--o{ ORDER : places
-    CART ||--o{ CART_ITEMS : contains
-    PRODUCT ||--o{ CART_ITEMS : included_in
-    ORDER ||--o{ ORDER_ITEMS : contains
-    PRODUCT ||--o{ ORDER_ITEMS : included_in
-    ORDER ||--|| PAYMENT : has
+The ER Diagram illustrates the structure and relationships of the Online Grocery Store System. It visually represents how different entities interact with each other and how data flows within the system.
 
-    USER {
-        int user_id
-        string name
-        string email
-        string password
-        string phone
-        string address
-        string role
-    }
+---
 
-    PRODUCT {
-        int product_id
-        string name
-        string category
-        float price
-        int quantity
-        string description
-    }
+### Entities and Attributes
 
-    CART {
-        int cart_id
-        int user_id
-        float total_amount
-    }
+#### 1. User
+- **Attributes:**
+  - UserID (PK)
+  - Name
+  - Email
+  - Password  
 
-    CART_ITEMS {
-        int cart_item_id
-        int cart_id
-        int product_id
-        int quantity
-    }
+- **Description:**  
+  Represents customers who register and interact with the system.
 
-    ORDER {
-        int order_id
-        int user_id
-        date order_date
-        float total_amount
-        string status
-    }
+---
 
-    ORDER_ITEMS {
-        int order_item_id
-        int order_id
-        int product_id
-        int quantity
-        float price
-    }
+#### 2. Category
+- **Attributes:**
+  - CategoryID (PK)
+  - CategoryName  
 
-    PAYMENT {
-        int payment_id
-        int order_id
-        string payment_method
-        string payment_status
-        string transaction_id
-    }
+- **Description:**  
+  Used to classify products into different groups.
+
+---
+
+#### 3. SubCategory
+- **Attributes:**
+  - SubCatID (PK)
+  - SubCatName  
+
+- **Description:**  
+  Represents subdivisions within a category for better product organization.
+
+---
+
+#### 4. Product
+- **Attributes:**
+  - ProductID (PK)
+  - ProductName
+  - Price
+  - Description
+  - ImageURL  
+
+- **Description:**  
+  Contains details about grocery items such as vegetables and other products.
+
+---
+
+#### 5. Cart
+- **Attributes:**
+  - CartID (PK)
+  - Quantity  
+
+- **Description:**  
+  Stores products selected by the user before placing an order.
+
+---
+
+#### 6. Order
+- **Attributes:**
+  - OrderID (PK)
+  - OrderDate
+  - TotalAmount  
+
+- **Description:**  
+  Represents confirmed purchases made by users.
+
+---
+
+#### 7. Payment
+- **Attributes:**
+  - PaymentID (PK)
+  - PaymentMode
+  - PaymentStatus  
+
+- **Description:**  
+  Handles payment details for orders.
+
+---
+
+#### 8. OrderHistory
+- **Attributes:**
+  - HistoryID (PK)  
+
+- **Description:**  
+  Maintains records of past orders for users.
+
+---
+
+### Relationships
+
+- **User → Registers → System**  
+  Users register and create accounts.
+
+- **User → Searches → Product**  
+  Users can search for products.
+
+- **Category → Has → Product**  
+  Each category contains multiple products.
+
+- **Category → Has → SubCategory**  
+  Categories are divided into subcategories.
+
+- **SubCategory → Contains → Product**  
+  Products belong to specific subcategories.
+
+- **User → Adds To → Cart**  
+  Users add products to their cart.
+
+- **Cart → Places → Order**  
+  Cart items are converted into orders.
+
+- **Order → Makes Payment → Payment**  
+  Each order is associated with a payment.
+
+- **Order → Stored In → OrderHistory**  
+  Completed orders are saved in history.
+
+---
+
+### Summary
+
+The ER diagram demonstrates a well-structured database design that:
+- Maintains clear relationships between entities  
+- Supports efficient data storage and retrieval  
+- Enables smooth execution of core functionalities like product browsing, cart management, order processing, and payments  
+
+This design ensures data integrity, scalability, and flexibility for future enhancements.
