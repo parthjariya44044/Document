@@ -162,18 +162,101 @@ Understanding user characteristics is essential for designing a system that meet
 
 ## SYSTEM ANALYSIS
 
-### Existing System
+### Study of Current System
 
-Traditional monolithic systems suffer from tight coupling, limited scalability, and higher maintenance complexity. Failures in one module can affect the entire system.
+In the current scenario, most grocery store operations are still managed through **physical visits, phone calls, or informal/manual methods**. Customers typically need to visit the store to check the availability of vegetables and other products or rely on phone inquiries, which can often be time-consuming and inefficient.
 
-### Proposed System
+There is **limited transparency** regarding product availability, pricing, and quality. Customers are unable to compare products easily or confirm availability in real-time before making a purchase. Additionally, small and medium grocery stores often lack a **dedicated digital system** to manage inventory, customer orders, and transactions effectively.
 
-The microservices architecture separates functionalities into independent services, ensuring better fault tolerance and scalability. Flutter reduces development overhead by providing a single codebase for multiple platforms.
+From the store owner's perspective, managing daily operations manually—such as tracking inventory, handling purchases, and maintaining records—can lead to inefficiencies and errors. This results in delays, miscommunication, and reduced customer satisfaction.
+
+As a result, the current system is:
+- Manual and labor-intensive  
+- Time-consuming for both customers and store staff  
+- Prone to human errors  
+- Lacking real-time updates and automation  
+
+---
+
+### Problems and Weaknesses of Current System
+
+The existing grocery store system has several limitations:
+
+- Customers often need to **visit the store physically or call** to check product availability.  
+- Manual record-keeping can lead to **errors, duplicate entries, or missing data**.  
+- Product details such as **vegetable types, prices, and availability** are not always clearly visible.  
+- Customers find it **difficult to compare products and prices** efficiently.  
+- Purchases are restricted to **store working hours**, limiting convenience.  
+- No centralized system exists for managing **inventory, customer data, and transactions**.  
+- Lack of automation increases **workload for store staff**.  
+- No real-time updates, leading to **outdated or incorrect information**.  
+
+These issues highlight the need for a **web-based grocery store system** that provides convenience, accuracy, and real-time access to information.
+
+---
 
 ### Feasibility Study
 
-- Technical: Strong ecosystem and community support  
-- Economic: Cost-efficient cloud scaling  
+The feasibility study evaluates whether the proposed system is practical, achievable, and beneficial.
+
+#### 1. Technical Feasibility
+- The system uses modern technologies such as **Flutter (frontend)** and **Node.js with MongoDB (backend)**, which are stable, scalable, and widely supported.  
+- Integration with services like **Firebase** enables features such as authentication and notifications.  
+- Web technologies (HTML, CSS, JavaScript) ensure a responsive and user-friendly interface.  
+- The system can run on **multiple devices** without requiring advanced hardware.  
+
+#### 2. Economic Feasibility
+- Development costs are relatively low due to the use of **open-source technologies**.  
+- No expensive infrastructure is required; **cloud hosting solutions** are cost-effective.  
+- Maintenance costs are minimal due to modular architecture and scalability.  
+
+#### 3. Operational Feasibility
+- Customers can **browse products and make purchases online بسهولة (easily)**.  
+- Admin users can efficiently **manage inventory, orders, and customer data**.  
+- Automation reduces manual work and improves overall store operations.  
+- The system improves customer satisfaction by providing **convenience and accessibility**.  
+
+---
+
+### Requirement Validation
+
+Requirement validation ensures that all collected requirements align with real-world needs and system goals.
+
+- Requirements were thoroughly reviewed for **accuracy, completeness, and consistency**.  
+- Core features such as **product browsing, availability checking, purchasing, authentication, and order tracking** were validated.  
+- User interface designs were tested for both **customer usability and admin efficiency**.  
+- All requirements were verified to be **technically and economically feasible**.  
+- Each requirement supports the main objective of creating a **simple, efficient, and user-friendly online grocery store system**.  
+
+---
+
+### Functional System
+
+The functional system defines the core operations and capabilities of the application.
+
+#### Customer Functions
+- User registration and login  
+- Browse and search products (vegetables, groceries)  
+- View product details and pricing  
+- Add items to cart and manage cart  
+- Place orders and make secure payments  
+- Track order status  
+
+#### Admin Functions
+- Add, update, and delete products  
+- Manage inventory and stock levels  
+- View and manage customer orders  
+- Monitor sales and generate reports  
+- Handle customer queries and issues  
+
+#### System Functions
+- Real-time data synchronization  
+- Secure authentication and authorization  
+- Payment gateway integration  
+- Notification system (order updates, alerts)  
+- Database management and data security  
+
+The functional system ensures that all user requirements are fulfilled while maintaining efficiency, reliability, and scalability.  
 
 ---
 
