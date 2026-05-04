@@ -567,137 +567,234 @@ With continuous development and integration of advanced technologies such as AI 
 
 
 ----
-## ER Diagram (Image Representation)
+----
+## SYSTEM DESIGN DIAGRAMS
 
-Below is the visual representation of the Entity-Relationship (ER) Diagram for the Online Grocery Store System:
+### 1. Entity-Relationship (ER) Diagram
 
-![ER Diagram](./image.png)
+The ER diagram illustrates the logical structure of the database, showing entities, their attributes, and the relationships between them.
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    USER ||--o{ REVIEW : writes
+    USER ||--o{ CART : has
+    CATEGORY ||--o{ PRODUCT : contains
+    PRODUCT ||--o{ REVIEW : receives
+    PRODUCT ||--o{ ORDER_ITEM : included_in
+    ORDER ||--o{ ORDER_ITEM : contains
+    ORDER ||--|| PAYMENT : has
+    CART ||--o{ CART_ITEM : contains
+    PRODUCT ||--o{ CART_ITEM : added_to
+
+    USER {
+        string id PK
+        string name
+        string email
+        string password
+        string role
+        string phone
+    }
+
+    PRODUCT {
+        string id PK
+        string title
+        string description
+        float price
+        float originalPrice
+        int discountPercentage
+        int stock
+        string categoryId FK
+        string brand
+    }
+
+    CATEGORY {
+        string id PK
+        string name
+        string image
+    }
+
+    ORDER {
+        string id PK
+        string userId FK
+        float totalAmount
+        string status
+        string paymentMethod
+        string paymentStatus
+        datetime createdAt
+    }
+
+    ORDER_ITEM {
+        string id PK
+        string orderId FK
+        string productId FK
+        int quantity
+        float price
+    }
+
+    CART {
+        string id PK
+        string userId FK
+    }
+
+    CART_ITEM {
+        string id PK
+        string cartId FK
+        string productId FK
+        int quantity
+    }
+
+    REVIEW {
+        string id PK
+        string productId FK
+        string userId FK
+        int rating
+        string comment
+    }
+```
 
 ### Description
 
-The ER diagram illustrates the relationships between key entities such as **User, Product, Category, SubCategory, Cart, Order, and Payment**.
-
-- A **User** can register, search products, add items to cart, and place orders.  
-- **Products** are organized under **Categories** and **SubCategories** for better classification.  
-- A **Cart** temporarily stores selected items before purchase.  
-- An **Order** is created after checkout and includes order details and total amount.  
-- **Payment** is associated with each order to handle transaction details.  
-- **Order History** maintains records of past purchases.  
-
-This diagram helps in understanding the system structure, data flow, and relationships, ensuring efficient database design and implementation.
+- **User**: Central entity representing both customers and admins.
+- **Product & Category**: Products are categorized for easier browsing.
+- **Cart & Cart Items**: Temporary storage for products before a user proceeds to checkout.
+- **Order & Order Items**: Persistent record of a completed transaction, capturing snapshots of prices at the time of purchase.
+- **Payment**: Tracks the financial transaction status linked to an order.
+- **Review**: Allows users to provide feedback on specific products.
 
 
 
 ----
-## USE CASE DIAGRAM
+## 2. USE CASE DIAGRAM
 
-The Use Case Diagram represents the interaction between different users (actors) and the system. It helps in identifying the functionalities provided by the Online Grocery Store System and how users interact with them.
-
-### Actors
-
-1. **Customer**
-   - A user who browses products and makes purchases.
-
-2. **Admin**
-   - A user who manages products, orders, and system operations.
-
----
-
-### Use Cases
-
-#### Customer Use Cases
-- Register / Login  
-- Browse Products  
-- Search Products  
-- View Product Details  
-- Add to Cart  
-- Manage Cart  
-- Place Order  
-- Make Payment  
-- Track Order  
-
-#### Admin Use Cases
-- Login  
-- Manage Products (Add, Update, Delete)  
-- Manage Categories  
-- View Orders  
-- Update Order Status  
-- Manage Users  
-- View Reports & Analytics  
-
----
-
-### Use Case Diagram (Visual Representation)
+The Use Case Diagram defines the interactions between the system's external actors (Customer, Admin) and the specific functionalities it provides.
 
 ```mermaid
-flowchart TD
-    Customer -->|Register/Login| UC1
-    Customer -->|Browse Products| UC2
-    Customer -->|Search Products| UC3
-    Customer -->|View Product Details| UC4
-    Customer -->|Add to Cart| UC5
-    Customer -->|Manage Cart| UC6
-    Customer -->|Place Order| UC7
-    Customer -->|Make Payment| UC8
-    Customer -->|Track Order| UC9
+graph LR
+    subgraph "Finikart System"
+        UC1(Register/Login)
+        UC2(Browse/Search Products)
+        UC3(Manage Cart)
+        UC4(Place Order)
+        UC5(Make Payment)
+        UC6(View Order History)
+        UC7(Write Review)
+        
+        A1(Manage Products)
+        A2(Manage Categories)
+        A3(Manage Orders)
+        A4(View Analytics)
+        A5(Manage Users)
+    end
 
-    Admin -->|Login| A1
-    Admin -->|Manage Products| A2
-    Admin -->|Manage Categories| A3
-    Admin -->|View Orders| A4
-    Admin -->|Update Order Status| A5
-    Admin -->|Manage Users| A6
-    Admin -->|View Reports| A7
+    Customer((Customer))
+    Admin((Admin))
+
+    Customer --> UC1
+    Customer --> UC2
+    Customer --> UC3
+    Customer --> UC4
+    Customer --> UC5
+    Customer --> UC6
+    Customer --> UC7
+
+    Admin --> UC1
+    Admin --> A1
+    Admin --> A2
+    Admin --> A3
+    Admin --> A4
+    Admin --> A5
+```
+
+### Description
+
+- **Customer**: Focuses on the shopping journey, from discovery (Browse/Search) to fulfillment (Place Order, Payment) and feedback (Review).
+- **Admin**: Focuses on operational control, maintaining the catalog, overseeing orders, and analyzing platform performance.
 
 ----
 
-## DATA FLOW DIAGRAM (DFD)
+## 3. DATA FLOW DIAGRAM (DFD)
 
-### Zero Level DFD (Context Diagram)
+### Level 0 DFD (Context Diagram)
 
-The **Zero Level Data Flow Diagram (DFD)**, also known as the **Context Diagram**, represents the entire Online Grocery Store System as a single process. It shows how external entities interact with the system and how data flows between them.
+The Level 0 DFD provides a high-level overview of the system, showing the boundary and external entities.
 
-### External Entities
-
-1. **Customer**
-   - Sends requests such as registration, login, product search, and order placement  
-   - Receives responses such as product details, order confirmation, and status updates  
-
-2. **Admin**
-   - Sends data for managing products, categories, and orders  
-   - Receives reports, analytics, and system updates  
-
-3. **Payment Gateway**
-   - Handles payment processing  
-   - Sends payment status and transaction details  
-
----
-
-### System Process
-
-- **Online Grocery Store System**
-  - Handles all operations such as user authentication, product management, order processing, and payment handling  
+```mermaid
+flowchart LR
+    Customer((Customer))
+    Admin((Admin))
+    Bank((Payment Gateway))
+    
+    System[Finikart E-Commerce System]
+    
+    Customer -- "Search, Cart, Payment" --> System
+    System -- "Products, Order Status" --> Customer
+    
+    Admin -- "Product Info, Categories" --> System
+    System -- "Sales Reports, User Data" --> Admin
+    
+    System -- "Transaction Info" --> Bank
+    Bank -- "Payment Success/Fail" --> System
+```
 
 ---
 
-### Data Flows
+### Level 1 DFD (Process Decomposition)
 
-- Customer → System: Login details, search queries, cart data, order requests  
-- System → Customer: Product information, order confirmation, order status  
-- Admin → System: Product updates, category management, order updates  
-- System → Admin: Reports, order details, user data  
-- System → Payment Gateway: Payment request  
-- Payment Gateway → System: Payment confirmation/status  
-
----
-
-### Zero Level DFD (Visual Representation)
+The Level 1 DFD breaks down the system into its primary functional processes, showing how data flows between them and the data stores.
 
 ```mermaid
 flowchart TD
-    Customer -->|Login / Search / Order| System[Online Grocery Store System]
-    Admin -->|Manage Products / Orders| System
-    System -->|Product Info / Order Status| Customer
-    System -->|Reports / Data| Admin
-    System -->|Payment Request| PaymentGateway[Payment Gateway]
-    PaymentGateway -->|Payment Status| System
+    C((Customer))
+    A((Admin))
+    B((Payment Gateway))
+
+    subgraph Processes
+        P1(1.0 User Management)
+        P2(2.0 Catalog Management)
+        P3(3.0 Order Management)
+        P4(4.0 Payment Processing)
+        P5(5.0 Reporting)
+    end
+
+    subgraph DataStores
+        D1[(User DB)]
+        D2[(Product DB)]
+        D3[(Order DB)]
+    end
+
+    %% User Management
+    C -- "Login Details" --> P1
+    P1 <--> D1
+    P1 -- "Auth Token" --> C
+
+    %% Catalog
+    C -- "Search Request" --> P2
+    P2 -- "Product Results" --> C
+    A -- "Update Product" --> P2
+    P2 <--> D2
+
+    %% Order Management
+    C -- "Checkout Request" --> P3
+    P3 <--> D3
+    P3 -- "Order Confirmation" --> C
+    A -- "Update Order Status" --> P3
+
+    %% Payment
+    P3 -- "Init Payment" --> P4
+    P4 -- "Auth Request" --> B
+    B -- "Status Code" --> P4
+    P4 -- "Verify Status" --> P3
+
+    %% Reporting
+    P3 -- "Sales Data" --> P5
+    P5 -- "Analytics" --> A
+```
+
+### Description
+
+- **Process 1.0 (User Management)**: Handles authentication, registration, and profile updates.
+- **Process 2.0 (Catalog Management)**: Manages product data, category hierarchies, and search indexing.
+- **Process 3.0 (Order Management)**: Coordinates cart operations, order creation, and status transitions.
+- **Process 4.0 (Payment Processing)**: Acts as a bridge between the order service and external payment providers.
+- **Process 5.0 (Reporting)**: Aggregates data from orders and users to provide insights for administrative decision-making.
