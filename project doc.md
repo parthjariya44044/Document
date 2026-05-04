@@ -648,3 +648,56 @@ flowchart TD
     Admin -->|Update Order Status| A5
     Admin -->|Manage Users| A6
     Admin -->|View Reports| A7
+
+----
+
+## DATA FLOW DIAGRAM (DFD)
+
+### Zero Level DFD (Context Diagram)
+
+The **Zero Level Data Flow Diagram (DFD)**, also known as the **Context Diagram**, represents the entire Online Grocery Store System as a single process. It shows how external entities interact with the system and how data flows between them.
+
+### External Entities
+
+1. **Customer**
+   - Sends requests such as registration, login, product search, and order placement  
+   - Receives responses such as product details, order confirmation, and status updates  
+
+2. **Admin**
+   - Sends data for managing products, categories, and orders  
+   - Receives reports, analytics, and system updates  
+
+3. **Payment Gateway**
+   - Handles payment processing  
+   - Sends payment status and transaction details  
+
+---
+
+### System Process
+
+- **Online Grocery Store System**
+  - Handles all operations such as user authentication, product management, order processing, and payment handling  
+
+---
+
+### Data Flows
+
+- Customer → System: Login details, search queries, cart data, order requests  
+- System → Customer: Product information, order confirmation, order status  
+- Admin → System: Product updates, category management, order updates  
+- System → Admin: Reports, order details, user data  
+- System → Payment Gateway: Payment request  
+- Payment Gateway → System: Payment confirmation/status  
+
+---
+
+### Zero Level DFD (Visual Representation)
+
+```mermaid
+flowchart TD
+    Customer -->|Login / Search / Order| System[Online Grocery Store System]
+    Admin -->|Manage Products / Orders| System
+    System -->|Product Info / Order Status| Customer
+    System -->|Reports / Data| Admin
+    System -->|Payment Request| PaymentGateway[Payment Gateway]
+    PaymentGateway -->|Payment Status| System
