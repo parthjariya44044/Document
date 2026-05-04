@@ -563,4 +563,144 @@ With continuous development and integration of advanced technologies such as AI 
 5. Razorpay API Docs: https://razorpay.com/docs/api/  
 6. Riverpod Docs: https://riverpod.dev/  
 7. Docker Docs: https://docs.docker.com/  
-8. Firebase Docs: https://firebase.google.com/docs  
+8. Firebase Docs: https://firebase.google.com/docs
+
+
+----
+## ER Diagram
+
+The Entity-Relationship (ER) Diagram represents the logical structure of the Online Grocery Store System. It defines the entities involved, their attributes, and the relationships between them.
+
+### Main Entities
+
+1. **User**
+   - User_ID (Primary Key)  
+   - Name  
+   - Email  
+   - Password  
+   - Phone  
+   - Address  
+   - Role (Customer/Admin)  
+
+2. **Product (Vegetables/Grocery Items)**
+   - Product_ID (Primary Key)  
+   - Name  
+   - Category  
+   - Price  
+   - Quantity (Stock)  
+   - Description  
+   - Image  
+
+3. **Cart**
+   - Cart_ID (Primary Key)  
+   - User_ID (Foreign Key)  
+   - Total_Amount  
+
+4. **Cart_Items**
+   - CartItem_ID (Primary Key)  
+   - Cart_ID (Foreign Key)  
+   - Product_ID (Foreign Key)  
+   - Quantity  
+
+5. **Order**
+   - Order_ID (Primary Key)  
+   - User_ID (Foreign Key)  
+   - Order_Date  
+   - Total_Amount  
+   - Status (Pending, Completed, Cancelled)  
+
+6. **Order_Items**
+   - OrderItem_ID (Primary Key)  
+   - Order_ID (Foreign Key)  
+   - Product_ID (Foreign Key)  
+   - Quantity  
+   - Price  
+
+7. **Payment**
+   - Payment_ID (Primary Key)  
+   - Order_ID (Foreign Key)  
+   - Payment_Method  
+   - Payment_Status  
+   - Transaction_ID  
+
+---
+
+### Relationships
+
+- A **User** can have **one Cart**  
+- A **User** can place **multiple Orders**  
+- A **Cart** contains **multiple Cart_Items**  
+- Each **Cart_Item** is linked to a **Product**  
+- An **Order** contains **multiple Order_Items**  
+- Each **Order_Item** is linked to a **Product**  
+- Each **Order** has **one Payment**  
+
+---
+
+### ER Diagram (Visual Representation)
+
+```mermaid
+erDiagram
+    USER ||--|| CART : has
+    USER ||--o{ ORDER : places
+    CART ||--o{ CART_ITEMS : contains
+    PRODUCT ||--o{ CART_ITEMS : included_in
+    ORDER ||--o{ ORDER_ITEMS : contains
+    PRODUCT ||--o{ ORDER_ITEMS : included_in
+    ORDER ||--|| PAYMENT : has
+
+    USER {
+        int user_id
+        string name
+        string email
+        string password
+        string phone
+        string address
+        string role
+    }
+
+    PRODUCT {
+        int product_id
+        string name
+        string category
+        float price
+        int quantity
+        string description
+    }
+
+    CART {
+        int cart_id
+        int user_id
+        float total_amount
+    }
+
+    CART_ITEMS {
+        int cart_item_id
+        int cart_id
+        int product_id
+        int quantity
+    }
+
+    ORDER {
+        int order_id
+        int user_id
+        date order_date
+        float total_amount
+        string status
+    }
+
+    ORDER_ITEMS {
+        int order_item_id
+        int order_id
+        int product_id
+        int quantity
+        float price
+    }
+
+    PAYMENT {
+        int payment_id
+        int order_id
+        string payment_method
+        string payment_status
+        string transaction_id
+    }
