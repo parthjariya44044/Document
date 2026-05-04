@@ -585,3 +585,66 @@ The ER diagram illustrates the relationships between key entities such as **User
 - **Order History** maintains records of past purchases.  
 
 This diagram helps in understanding the system structure, data flow, and relationships, ensuring efficient database design and implementation.
+
+
+
+----
+## USE CASE DIAGRAM
+
+The Use Case Diagram represents the interaction between different users (actors) and the system. It helps in identifying the functionalities provided by the Online Grocery Store System and how users interact with them.
+
+### Actors
+
+1. **Customer**
+   - A user who browses products and makes purchases.
+
+2. **Admin**
+   - A user who manages products, orders, and system operations.
+
+---
+
+### Use Cases
+
+#### Customer Use Cases
+- Register / Login  
+- Browse Products  
+- Search Products  
+- View Product Details  
+- Add to Cart  
+- Manage Cart  
+- Place Order  
+- Make Payment  
+- Track Order  
+
+#### Admin Use Cases
+- Login  
+- Manage Products (Add, Update, Delete)  
+- Manage Categories  
+- View Orders  
+- Update Order Status  
+- Manage Users  
+- View Reports & Analytics  
+
+---
+
+### Use Case Diagram (Visual Representation)
+
+```mermaid
+flowchart TD
+    Customer -->|Register/Login| UC1
+    Customer -->|Browse Products| UC2
+    Customer -->|Search Products| UC3
+    Customer -->|View Product Details| UC4
+    Customer -->|Add to Cart| UC5
+    Customer -->|Manage Cart| UC6
+    Customer -->|Place Order| UC7
+    Customer -->|Make Payment| UC8
+    Customer -->|Track Order| UC9
+
+    Admin -->|Login| A1
+    Admin -->|Manage Products| A2
+    Admin -->|Manage Categories| A3
+    Admin -->|View Orders| A4
+    Admin -->|Update Order Status| A5
+    Admin -->|Manage Users| A6
+    Admin -->|View Reports| A7
