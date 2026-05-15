@@ -793,6 +793,28 @@ flowchart TD
 
 ### Description
 
+
+
+----------------------------
+## PROJECT SCHEDULE (GANTT CHART)
+
+Below is the visual representation of the project schedule for the Ogani Grocery Store system:
+
+![Project Schedule](./image(1).png)
+
+### Description
+
+The Gantt chart illustrates the timeline and phases involved in the development of the project:
+
+- **Requirement Analysis:** Initial phase focusing on gathering and understanding system requirements.  
+- **Planning & Design:** Defining system architecture and UI/UX design.  
+- **Integration & Testing:** Combining modules and ensuring system functionality.  
+- **Module Development:** Core development phase where features are implemented.  
+- **Deployment & Development:** Final system deployment and improvements.  
+- **Final Evaluation:** Project review and performance assessment.  
+
+This visual schedule helps in tracking project progress, managing time efficiently, and ensuring timely completion of each phase.
+
 - **Process 1.0 (User Management)**: Handles authentication, registration, and profile updates.
 - **Process 2.0 (Catalog Management)**: Manages product data, category hierarchies, and search indexing.
 - **Process 3.0 (Order Management)**: Coordinates cart operations, order creation, and status transitions.
